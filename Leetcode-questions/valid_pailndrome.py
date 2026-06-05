@@ -1,4 +1,4 @@
-def isPalindrome(s)
+def isPalindrome(s):
         n = len(s)
         i = 0
         j = n-1
