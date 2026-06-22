@@ -1,24 +1,22 @@
-def func(s , abbr):
-    i = 0
-    j = 0
-    while(i<len(s)):
-        count = 0
-        if s[i] == abbr[j]:
-            i+=1
-            j+=1
-        elif s[i] != abbr[j]:
-            if abbr[j].isdigit():
-                val = int(abbr[j])
-                while(i<=val):
-                    i+=1
-                    count+=1
-                if count != i:
+class Solution:
+    def validWordAbbreviation(self, word: str, abbr: str) -> bool:
+        i =0
+        j =0
+        m= len(word)
+        n = len(abbr)
+        while(i<m and j<n):
+            if word[i]==abbr[j]:
+                i+=1
+                j+=1
+            elif abbr[j].isdigit():
+                if abbr[j]=="0":
                     return False
-        
-    return True
-
-print(func("apple", "a3e"))
-
-                    
-
+                num = 0
+                while(abbr[j].isnumeric() and j<n):
+                    num = num*10+ int(abbr[j])
+                    j+=1
+                i += num
+            else:
+                return False
+        return i==m and j==n
 
